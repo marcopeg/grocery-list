@@ -7,3 +7,4 @@ dist/app.js.map
 dist/guide.js
 dist/guide.js.map
 test-coverage-report
+npm-debug.log
