@@ -8,15 +8,19 @@ export default class Items extends React.Component {
 
     static propTypes = {
         items: React.PropTypes.array.isRequired,
+        onStatusChange: React.PropTypes.func.isRequired,
     }
 
     render() {
         var { items } = this.props;
+        var { createOnToggleHandler } = this;
 
         items = items.map(item => {
             var { id } = item;
             return (
-                <ListItem {...item} key={id} />
+                <ListItem {...item}
+                    key={id}
+                    onToggle={createOnToggleHandler(item)} />
             );
         });
 
@@ -25,5 +29,10 @@ export default class Items extends React.Component {
                 {items}
             </ListGroup>
         );
+    }
+
+    createOnToggleHandler = item => {
+        var { onStatusChange } = this.props;
+        return isActive => onStatusChange(item, isActive);
     }
 }

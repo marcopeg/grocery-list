@@ -6,6 +6,7 @@ import { init as initStorage } from 'services/storage-service';
 import {
     init as initTodos,
     add as addTodo,
+    toggle as toggleTodo,
 } from 'services/todos-service';
 
 import List from 'components/List';
@@ -38,12 +39,12 @@ export default class App extends React.Component {
 
     render() {
         var { items } = this.props;
-        var { addNewItem } = this;
+        var { addNewItem, toggleItem } = this;
 
         return (
             <Grid>
                 <AppName title="Grocery List" />
-                <List items={items} />
+                <List items={items} onStatusChange={toggleItem} />
                 <hr />
                 <NewItem onSubmit={addNewItem} />
             </Grid>
@@ -53,5 +54,10 @@ export default class App extends React.Component {
     addNewItem = label => {
         var { dispatch } = this.props;
         dispatch(addTodo(label));
+    }
+
+    toggleItem = (item) => {
+        var { dispatch } = this.props;
+        dispatch(toggleTodo(item));
     }
 }
