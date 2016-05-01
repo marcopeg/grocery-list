@@ -2,6 +2,7 @@
 import React from 'react';
 import { ClassMap } from 'class-map';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import ListItemCheckbox from 'components/ListItemCheckbox';
 
 
 export default class ListItem extends React.Component {
@@ -12,11 +13,13 @@ export default class ListItem extends React.Component {
             React.PropTypes.number,
         ]).isRequired,
         label: React.PropTypes.string.isRequired,
-        isActive: React.PropTypes.bool,
+        isActive: React.PropTypes.bool.isRequired,
+        onToggle: React.PropTypes.func.isRequired,
     }
 
     render() {
         var { id, label, isActive } = this.props;
+        var { onChangeHandler } = this;
 
         var className = new ClassMap({
             'list-group-item--disabled' : (isActive === false),
@@ -29,8 +32,16 @@ export default class ListItem extends React.Component {
 
         return (
             <ListGroupItem {...itemProps}>
-                {label}
+                <ListItemCheckbox
+                    isChecked={!isActive}
+                    onChange={onChangeHandler} />
+                <span> {label}</span>
             </ListGroupItem>
         );
+    }
+
+    onChangeHandler = isActive => {
+        var { onToggle } = this.props;
+        onToggle(!isActive);
     }
 }

@@ -23,6 +23,25 @@ export function add(label) {
     };
 }
 
+export function toggle(todo) {
+    return (dispatch, getState) => {
+        var { todos } = getState();
+        var { items } = todos;
+
+        items = items.map(item => {
+            if (item.id === todo.id) {
+                item.isActive = !item.isActive;
+            }
+            return item;
+        });
+
+        isReady()
+        .then(() => setItem('items', todos.items))
+        .then(() => dispatch(setItems(todos.items)))
+        .catch(err => console.log(err));
+    };
+}
+
 export function createNewItem(label) {
     return {
         id: Date.now(),
