@@ -10,6 +10,7 @@ import {
 
 import List from 'components/List';
 import NewItem from 'components/NewItem';
+import AppName from 'components/AppName';
 
 import Grid from 'react-bootstrap/lib/Grid';
 
@@ -41,6 +42,7 @@ export default class App extends React.Component {
 
         return (
             <Grid>
+                <AppName title="Grocery List" />
                 <List items={items} />
                 <hr />
                 <NewItem onSubmit={addNewItem} />
