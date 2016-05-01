@@ -12,7 +12,7 @@ import {
 import sortListItems from 'utils/sort-list-items';
 import { getTodos } from 'fixtures/todos.fixture';
 
-describe.only('todosReducer', () => {
+describe('todosReducer', () => {
 
     var items;
 
