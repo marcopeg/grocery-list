@@ -3,9 +3,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { init as initStorage } from 'services/storage-service';
-import { init as initTodos } from 'services/todos-service';
+import {
+    init as initTodos,
+    add as addTodo,
+} from 'services/todos-service';
 
 import List from 'components/List';
+import NewItem from 'components/NewItem';
+
+import Grid from 'react-bootstrap/lib/Grid';
 
 @connect(state => {
     var { todos } = state;
@@ -31,9 +37,19 @@ export default class App extends React.Component {
 
     render() {
         var { items } = this.props;
+        var { addNewItem } = this;
 
         return (
-            <List items={items} />
+            <Grid>
+                <List items={items} />
+                <hr />
+                <NewItem onSubmit={addNewItem} />
+            </Grid>
         );
+    }
+
+    addNewItem = label => {
+        var { dispatch } = this.props;
+        dispatch(addTodo(label));
     }
 }
