@@ -19,7 +19,7 @@ export default class AppName extends React.Component {
         };
 
         return (
-            <div style={ titleStyle }>
+            <div className="app-name" style={ titleStyle }>
                 {title}
             </div>
         );
