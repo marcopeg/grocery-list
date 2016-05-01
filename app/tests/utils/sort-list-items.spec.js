@@ -23,7 +23,7 @@ describe('sortListItems()', function () {
 
     it('should place unchecked items on top', function () {
         var ids = sortedItems.map(i => i.id);
-        var expectedIds = [3, 7, 1, 2, 4, 5, 6, 8];
+        var expectedIds = [7, 3, 4, 5, 8, 1, 2, 6];
         expect(ids).to.deep.equal(expectedIds);
     });
 });

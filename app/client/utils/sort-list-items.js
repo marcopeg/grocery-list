@@ -16,7 +16,6 @@ function compareItems(a, b) {
     if (b.isActive && !a.isActive) {
         return 1;
     }
-    // may apply aplhabetical order?
-    // may apply custom order with drag'n'drop?
-    return 0;
+    // alphabetical order
+    return a.label.localeCompare(b.label);
 }
