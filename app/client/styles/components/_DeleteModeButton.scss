@@ -6,19 +6,16 @@
   http://elrumordelaluz.github.io/csshake/
   Licensed under MIT
 \* * * * * * * * * * * * * * * * * * * * */
+
+/******Set the animation speed******/
+
+.shake-little {
+  animation: shake-little 3000ms ease-in-out infinite;
+}
+
 .shake-little {
   display: inline-block;
   transform-origin: center center; }
-
-.shake-freeze,
-.shake-constant.shake-constant--hover:hover,
-.shake-trigger:hover .shake-constant.shake-constant--hover {
-  animation-play-state: paused; }
-
-.shake-freeze:hover,
-.shake-trigger:hover .shake-freeze, .shake-little:hover,
-.shake-trigger:hover .shake-little {
-  animation-play-state: running; }
 
 @keyframes shake-little {
   2% {
@@ -122,10 +119,8 @@
   0%, 100% {
     transform: translate(0, 0) rotate(0); } }
 
-.shake-little {
-  animation: shake-little 100ms ease-in-out infinite;
-}
 
- .glyphicon {
+
+ .glyphicon-trash {
 	 font-size: 23px;
  }
