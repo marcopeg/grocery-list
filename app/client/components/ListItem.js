@@ -15,11 +15,14 @@ export default class ListItem extends React.Component {
         label: React.PropTypes.string.isRequired,
         isActive: React.PropTypes.bool.isRequired,
         onToggle: React.PropTypes.func.isRequired,
+        mode: React.PropTypes.string,
+        onDelete: React.PropTypes.func,
     }
 
     render() {
-        var { id, label, isActive } = this.props;
-        var { onChangeHandler } = this;
+
+        var { id, label, isActive, mode } = this.props;
+        var { onChangeHandler, onDeleteHandler } = this;
 
         var className = new ClassMap({
             'list-group-item--disabled' : (isActive === false),
@@ -30,11 +33,18 @@ export default class ListItem extends React.Component {
             className: className.toString(),
         };
 
+        var checkBox = <ListItemCheckbox isChecked={!isActive} onChange={onChangeHandler} />;
+
+        var onCLickHandler;
+
+        if (mode === 'delete') {
+            checkBox = null;
+            onCLickHandler = onDeleteHandler;
+        }
+
         return (
-            <ListGroupItem {...itemProps}>
-                <ListItemCheckbox
-                    isChecked={!isActive}
-                    onChange={onChangeHandler} />
+            <ListGroupItem onClick={onCLickHandler} {...itemProps}>
+                {checkBox}
                 <span> {label}</span>
             </ListGroupItem>
         );
@@ -43,5 +53,16 @@ export default class ListItem extends React.Component {
     onChangeHandler = isActive => {
         var { onToggle } = this.props;
         onToggle(!isActive);
+    }
+
+    onDeleteHandler = () => {
+        var { id, label, isActive } = this.props;
+        var { onDelete } = this.props;
+        var item = {
+            id: id,
+            label: label,
+            isActive: isActive,
+        };
+        onDelete(item);
     }
 }
