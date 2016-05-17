@@ -22,7 +22,6 @@ export default class DeleteModeButtonGuideComponent extends React.Component {
                 <SGSection title="DeleteModeButton - active">
                     <DeleteModeButton
                         isActive={true}
-                        onClick={nextValue => this.setState({ isActive: nextValue })}
                          />
                 </SGSection>
 
