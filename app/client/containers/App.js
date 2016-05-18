@@ -39,16 +39,22 @@ export default class App extends React.Component {
 
     render() {
         var { items } = this.props;
-        var { addNewItem, toggleItem } = this;
+        var { addNewItem, toggleItem, tester } = this;
 
         return (
             <Grid>
                 <AppName title="Grocery List" />
-                <List items={items} onStatusChange={toggleItem} />
+                <List items={items} onStatusChange={toggleItem} mode="delete"
+                    onDelete={tester}
+                />
                 <hr />
                 <NewItem onSubmit={addNewItem} />
             </Grid>
         );
+    }
+
+    tester = (item) => {
+        console.log(item.id + ' ' + item.label + ' ' + item.isActive);
     }
 
     addNewItem = label => {
