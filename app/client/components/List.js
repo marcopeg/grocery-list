@@ -8,9 +8,9 @@ export default class List extends React.Component {
 
     static propTypes = {
         items: React.PropTypes.array.isRequired,
-        mode: React.PropTypes.string,
+        mode: React.PropTypes.oneOf(['delete', 'regular', 'edit']),
         onStatusChange: React.PropTypes.func.isRequired,
-        onDelete: React.PropTypes.func,
+        onDelete: React.PropTypes.func.isRequired,
     }
 
     render() {

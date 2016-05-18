@@ -15,8 +15,8 @@ export default class ListItem extends React.Component {
         label: React.PropTypes.string.isRequired,
         isActive: React.PropTypes.bool.isRequired,
         onToggle: React.PropTypes.func.isRequired,
-        mode: React.PropTypes.string,
-        onDelete: React.PropTypes.func,
+        mode: React.PropTypes.oneOf(['delete', 'regular', 'edit']),
+        onDelete: React.PropTypes.func.isRequired,
     }
 
     render() {
